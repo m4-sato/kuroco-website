@@ -4,11 +4,12 @@ import {
   Box,
   Card,
   CardActionArea,
-  Grid,
+//   Grid,
   Pagination,
   Stack,
   Typography,
 } from '@mui/material';
+import Grid from '@mui/material/Grid'
 import CardMedia from '@mui/material/CardMedia';
 import { format } from 'date-fns';
 import Link from 'next/link';
@@ -77,7 +78,8 @@ export default function NewsClient() {
       <Box>
         <Grid container spacing={3}>
           {items?.map((item) => (
-            <Grid key={item.topics_id} xs={12} sm={6} md={4}>
+            // @ts-ignore
+            <Grid key={item.topics_id} component="div" xs={12} sm={6} md={4}>
               <Card>
                 <Link href={`/news/${item.topics_id}`} passHref>
                   <CardActionArea>
