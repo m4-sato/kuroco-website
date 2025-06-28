@@ -77,7 +77,7 @@ export default function NewsClient() {
       <Box>
         <Grid container spacing={3}>
           {items?.map((item) => (
-            <Grid key={item.topics_id} item xs={12} sm={6} md={4}>
+            <Grid key={item.topics_id} xs={12} sm={6} md={4}>
               <Card>
                 <Link href={`/news/${item.topics_id}`} passHref>
                   <CardActionArea>
