@@ -1,7 +1,14 @@
+// next.config.ts
+
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // ▼▼▼ この2行を追記 ▼▼▼
+  output: 'export',
+  trailingSlash: true,
+  // ▲▲▲ ここまで追記 ▲▲▲
+
+  // 他の設定があれば、それはそのままにしておきます
 };
 
 export default nextConfig;
