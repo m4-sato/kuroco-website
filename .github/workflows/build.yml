@@ -47,11 +47,14 @@ jobs:
                       
       - name: Install dependencies
         if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}      
-        run: npm ci --prefix ./my-app 
+        run: npm ci
+        working-directory: ./my-app
       - name: Build
-        run: npm run build --prefix ./my-app
+        run: npm run build
+        working-directory: ./my-app
       - name: Zip artifact for upload
-        run: cd out && zip ../out.zip . -r
+        run: cd out && zip ../../out.zip . -r
+        working-directory: ./my-app
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v4
         with:
