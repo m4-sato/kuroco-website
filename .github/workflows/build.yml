@@ -46,8 +46,7 @@ jobs:
             ${{ runner.os }}-node-
             
       - name: Install dependencies
-        if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
-        run: npm ci
+        run: npm install # Changed from npm ci
         working-directory: ./my-app
         
       - name: Build
@@ -98,8 +97,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
-        run: npm ci
+        run: npm install # Changed from npm ci
         working-directory: ./my-app
 
       - name: Build
