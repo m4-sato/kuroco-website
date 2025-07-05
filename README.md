@@ -6,6 +6,20 @@
   - React
     - JSX,TSX
 
+## 技術
+
+### default export と named export
+
+コンポーネント等を他のファイルで import して利用するためには、export をしておく必要がある。
+
+1 つのファイルで 2 つ以上のコンポーネントや値などを export するには、`named export` をする必要があります。
+
+```typescript
+export function ButtonLink() {}
+```
+
+コンポーネントなどを 1 つのファイルで 1 つの場合は、`default export`
+
 ## 参考情報
 
 - [Next.js 公式サイト](https://nextjs.org/docs)
@@ -18,6 +32,8 @@
 
 - [sample code](https://github.com/diverta/front_nuxt_auth)
 - [quick guide](https://kuroco.app/ja/quick-guide/)
+
+##
 
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
