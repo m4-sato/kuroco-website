@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import Sheet from "@/app/_components/Sheet";
 
 type Member = {
   id: string;
