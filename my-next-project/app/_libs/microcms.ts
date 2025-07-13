@@ -14,17 +14,15 @@ export type Member = {
 
 export type Category = {
   name: string;
-};
+} & MicroCMSListContent;
 
 export type News = {
-  id: string;
   title: string;
-  category: {
-    name: string;
-  };
-  publishedAt: string;
-  createdAt: string;
-};
+  description: string;
+  content: string;
+  thumbnail?: MicroCMSImage;
+  category: Category;
+} & MicroCMSListContent;
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
   throw new Error("Please set MICROCMS_SERVICE_DOMAIN in .env.local");
@@ -38,10 +36,29 @@ const client = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
   apiKey: process.env.MICROCMS_API_KEY,
 });
+
 export const getMembersList = async (queries?: MicroCMSQueries) => {
   const listData = await client.getList<Member>({
     endpoint: "members",
     queries,
+    customRequestInit: {
+      next: {
+        revalidate: 60,
+      },
+    },
+  });
+  return listData;
+};
+
+export const getNewsList = async (queries?: MicroCMSQueries) => {
+  const listData = await client.getList<News>({
+    endpoint: "news",
+    queries,
+    customRequestInit: {
+      next: {
+        revalidate: 60,
+      },
+    },
   });
   return listData;
 };
