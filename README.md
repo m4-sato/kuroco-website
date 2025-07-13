@@ -46,7 +46,20 @@ export function ButtonLink() {}
 
 `props`は定義した様々な値をコンポーネントに渡すことができる要素
 
-### ルーティング
+### ルーティング(App Router)
+
+app/ディレクトリでのルーティングを行う仕組みのことを**App Router**と呼ぶ
+
+Next.js の App Router は 2 種類のコンポーネントに分けられる
+
+1. サーバーコンポーネント
+
+'use client'をつけないと app 配下すべてのコンポーネントがデフォルトでコンポーネントになる。
+
+2. クライアントコンポーネント
+
+use client を付与したコンポーネントをクライアントコンポーネントと呼ぶ
+クライアントすなわちユーザーが操作しているブラウザ上で実行される
 
 #### URL の仕組み
 
@@ -78,6 +91,35 @@ Hero コンポーネントを作成すると、サイト全体の統一感を出
 > コンポーネントに分けることで複雑な処理を整理できる。
 > 1 つの page.tsx ファイルやコンポーネントに多くの処理を含めてしまうとバグの原因やコードの可読性が低下する。
 
+## useState で Web サイトに動きをつける
+
+`classnames`をインストール
+
+```bash
+npm install classnames
+```
+
+## バックエンド
+
+### API
+
+API とは異なるソフトウェアやアプリケーションとの間で通信を行う際に、データのやり取りをするための規格を表すもの
+
+### エンドポイント
+
+ある特定の機能を実行したり、特定のデータを取得したりするために、プログラムが通信を行う URL のこと
+
+### API の型
+
+- リスト形式
+  複数コンテンツを取り扱える
+- オブジェクト形式
+  単一コンテンツを取り扱える
+
+### API スキーマを定義する
+
+実際にどのようなデータが返却されるか定義する
+
 ### 参考情報
 
 - [Next.js 公式サイト](https://nextjs.org/docs)
@@ -89,8 +131,10 @@ Hero コンポーネントを作成すると、サイト全体の統一感を出
 - [Next.js ファイル名規則](https://nextjs.org/docs/app/api-reference/file-conversions/not-found)
 - [JSX での三項演算子](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Conditional_operator)
 - [Nesting-layouts]()
+- [Typescript ジェネリクス](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+- [非同期処理](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-## バックエンド kuroco チュートリアル
+## Kuroco チュートリアル
 
 - [sample code](https://github.com/diverta/front_nuxt_auth)
 - [quick guide](https://kuroco.app/ja/quick-guide/)
