@@ -1,2 +1,2 @@
 [config]
-project = my-next-project
+COMMAND = bash deploy.sh
