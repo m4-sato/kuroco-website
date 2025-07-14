@@ -72,5 +72,6 @@ export const getNewsDetail = async (
     contentId,
     queries,
   });
+
   return detailData;
 };
