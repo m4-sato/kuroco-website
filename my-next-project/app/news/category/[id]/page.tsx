@@ -1,4 +1,5 @@
 import { getCategoryDetail, getNewsList } from "@/app/_libs/microcms";
+import Pagination from "@/app/_components/Pagination";
 import { notFound } from "next/navigation";
 import NewsList from "@/app/_components/NewsList";
 import Category from "@/app/_components/Category";
@@ -13,7 +14,7 @@ type Props = {
 export default async function Page({ params }: Props) {
   const category = await getCategoryDetail(params.id).catch(notFound);
 
-  const { contents: news } = await getNewsList({
+  const { contents: news, totalCount } = await getNewsList({
     limit: NEWS_LIST_LIMIT,
     filters: `category[equals]${category.id}`,
   });
@@ -25,6 +26,10 @@ export default async function Page({ params }: Props) {
         の一覧
       </p>
       <NewsList news={news} />
+      <Pagination
+        totalCount={totalCount}
+        basePath={`/news/category/${category.id}`}
+      />
     </>
   );
 }
