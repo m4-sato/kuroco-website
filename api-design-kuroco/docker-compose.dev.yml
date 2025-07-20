@@ -1,0 +1,36 @@
+# services:
+#   # サービス名を「web」とします
+#   web:
+#     # 現在のディレクトリにあるDockerfileを使ってイメージをビルド
+#     build: .
+#     # コンテナに付ける名前
+#     container_name: nextjs-dev-container
+#     # ポートのマッピング
+#     # [ローカルPCのポート]:[コンテナのポート]
+#     ports:
+#       - "3000:3000"
+#     # ボリュームのマウント
+#     # [ローカルのファイル/フォルダ]:[コンテナ内のファイル/フォルダ]
+#     # これにより、ローカルでコードを編集すると即座にコンテナ内に反映されます（ホットリロード）
+#     volumes:
+#       - .:/app
+#       # node_modulesはマウント対象から除外し、コンテナ内のものを利用
+#       - /app/node_modules
+#     # コンテナを常に起動状態に保つ（開発中はなくてもOK）
+#     stdin_open: true
+#     tty: true
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: nextjs-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app # コード同期
+      - /app/node_modules # コンテナ側 node_modules を保持
+    environment:
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1

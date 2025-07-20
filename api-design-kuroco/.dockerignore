@@ -1,0 +1,7 @@
+# キャッシュやビルド成果物を除外
+node_modules
+.next
+out
+.git
+.vscode
+.env*
