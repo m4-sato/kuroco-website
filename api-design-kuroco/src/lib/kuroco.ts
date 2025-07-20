@@ -1,3 +1,5 @@
+//home/azureuser/Git/kuroco-website/api-design-kuroco/src/lib/kuroco.ts
+
 const BASE = process.env.NEXT_PUBLIC_API_BASE!;
 const H = { "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY! };
 

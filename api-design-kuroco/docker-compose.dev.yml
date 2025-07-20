@@ -25,12 +25,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    container_name: nextjs-dev
+      args:
+        - NEXT_PUBLIC_API_BASE=${NEXT_PUBLIC_API_BASE}
+        - NEXT_PUBLIC_API_KEY=${NEXT_PUBLIC_API_KEY}
+    # env_file:
+    #   - .env.local
     ports:
       - "3000:3000"
     volumes:
-      - .:/app # コード同期
-      - /app/node_modules # コンテナ側 node_modules を保持
+      - .:/app
+      - /app/node_modules
     environment:
       - NODE_ENV=development
-      - NEXT_TELEMETRY_DISABLED=1
+      - NEXT_PUBLIC_API_BASE=${NEXT_PUBLIC_API_BASE}
+      - NEXT_PUBLIC_API_KEY=${NEXT_PUBLIC_API_KEY}

@@ -1,8 +1,8 @@
-import Header from "@/components/header";
-import HeroCases from "@/components/hero-cases";
-import ToolsPanel from "@/components/tools-panel";
-import CasesPanel from "@/components/cases-panel";
-import Chatbot from "@/components/chatbot";
+import Header from "@/components/ui/header";
+import HeroCases from "@/components/ui/hero-cases";
+import ToolsPanel from "@/components/ui/tools-panel";
+import CasesPanel from "@/components/ui/cases-panel";
+import Chatbot from "@/components/ui/chatbot";
 import {
   getLatestCases,
   getTools,
