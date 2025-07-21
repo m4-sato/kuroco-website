@@ -33,16 +33,29 @@ export async function getAllCases(): Promise<Case[]> {
   return (await r.json()).list;
 }
 
+// export async function getTools(): Promise<Tool[]> {
+//   const r = await fetch(`${BASE}/rcms-api/1/ai_tools`, {
+//     headers: HEADERS,
+//     next: { revalidate: 60 },
+//   });
+
+//   const json = await r.json();
+//   return Array.isArray(json.list) ? json.list : [];
+// } catch (e) {
+//   console.error("getTools error", e);
+//   return [];            // ★ ここで必ず配列を返す
+//   }
+// }
 export async function getTools(): Promise<Tool[]> {
-  const r = await fetch(`${BASE}/rcms-api/1/ai_tools`, {
-    headers: HEADERS,
-    next: { revalidate: 60 },
-  });
-    
-  const json = await r.json();
-  return Array.isArray(json.list) ? json.list : [];
-} catch (e) {
-  console.error("getTools error", e);
-  return [];            // ★ ここで必ず配列を返す
-  }
-}
+  try {
+    const r = await fetch(`${BASE}/rcms-api/1/ai_tools`, {
+      headers: HEADERS,
+      next: { revalidate: 60 },
+    });
+    const json = await r.json();
+    return Array.isArray(json.list) ? json.list : [];
+  } catch (e) {
+    console.error("getTools error", e);
+    return []; // ★ 必ず配列を返す
+  } // ← try/catch を閉じる波かっこはここだけ
+} // ← そして関数を閉じる波かっこ
