@@ -43,3 +43,13 @@ export const getAllCases = () =>
 
 export const getTools = () =>
   fetchList<Tool>(`/rcms-api/1/ai_tools?topics_group_id[]=9`);
+
+async function fetchLabel(slug: string): Promise<string> {
+  const list = await fetchList(`/rcms-api/1/site_settings?slug=${slug}`);
+  return list[0]?.subject ?? ""; // 見つからなければ空文字
+}
+
+/* ── 見出しラベル ───────────────── */
+export const getLabelAiCases = () => fetchLabel("section_ai_cases");
+export const getLabelAiTools = () => fetchLabel("section_ai_tools");
+export const getLabelAiPanel = () => fetchLabel("section_ai_panel");

@@ -1,4 +1,7 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -119,26 +122,30 @@
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* ここに追記 */
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-.marquee {
-  animation: marquee 15s linear infinite;
-}
+@import "keen-slider/keen-slider.min.css";
 
 .embla {
   -webkit-overflow-scrolling: touch;
 }
 .embla__slide {
   min-width: 0; /* Safari flex-basis バグ対策 */
+}
+
+/* src/app/globals.css ─ 末尾に追記 */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+/* ――追加で “リセット” 系を入れておくと bullet が消える ―― */
+ul[class] {
+  @apply list-none p-0 m-0;
 }
