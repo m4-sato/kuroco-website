@@ -10,11 +10,15 @@
 ### Docker コマンド
 
 ```bash
-docker compose -f docker-compose.dev.yml down
-docker compose -f docker-compose.dev.yml up --build -d
+$ docker compose -f docker-compose.dev.yml down
+$ docker compose -f docker-compose.dev.yml up --build -d
 ```
 
 ```bash
-docker compose -f docker-compose.dev.yml exec web \
+$ docker compose -f docker-compose.dev.yml exec web \
  printenv | grep NEXT_PUBLIC_API_BASE
+```
+
+```bash
+$ docker compose -f docker-compose.dev.yml restart web
 ```
