@@ -135,3 +135,10 @@
 .marquee {
   animation: marquee 15s linear infinite;
 }
+
+.embla {
+  -webkit-overflow-scrolling: touch;
+}
+.embla__slide {
+  min-width: 0; /* Safari flex-basis バグ対策 */
+}

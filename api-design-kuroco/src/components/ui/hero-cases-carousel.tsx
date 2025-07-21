@@ -1,28 +1,3 @@
-// //home/azureuser/Git/kuroco-website/api-design-kuroco/src/components/ui/hero-cases.tsx
-// "use client";
-// import Image from "next/image";
-// import { Case } from "@/types";
-// import { useAutoAnimate } from "@formkit/auto-animate/react";
-
-// export default function HeroCases({ cases }) {
-//   const [parent] = useAutoAnimate<HTMLDivElement>({ duration: 8000 });
-
-//   return (
-//     <div ref={parent} className="flex gap-6 overflow-hidden animate-scroll">
-//       {cases.map((c) => (
-//         <Image
-//           key={c.topics_id}
-//           src={c.ext_1.url}
-//           alt={c.subject}
-//           width={200}
-//           height={120}
-//           className="rounded-lg"
-//         />
-//       ))}
-//     </div>
-//   );
-// }
-
 "use client";
 
 import { Case } from "@/types";
@@ -32,14 +7,22 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay"; // ★ Embla の公式プラグイン
+import { useRef } from "react";
 
 type Props = { cases: Case[] };
 
 export default function HeroCasesCarousel({ cases }: Props) {
+  const autoplay = useRef(Autoplay({ delay: 3500, stopOnInteraction: false }));
+
   if (!cases.length) return null;
 
   return (
-    <Carousel className="w-full max-w-3xl mx-auto">
+    <Carousel
+      plugins={[autoplay.current]}
+      className="w-full max-w-3xl mx-auto"
+      opts={{ loop: true }}
+    >
       <CarouselContent>
         {cases.map((c) => (
           <CarouselItem key={c.topics_id} className="basis-1/2 md:basis-1/3">

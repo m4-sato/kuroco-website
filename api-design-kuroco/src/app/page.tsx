@@ -1,17 +1,18 @@
 // src/app/page.tsx
-import HeroCases from "@/components/ui/hero-cases";
-import ToolsPanel from "@/components/ui/tools-panel";
-import CasesPanel from "@/components/ui/cases-panel";
-
 import {
   getLatestCases,
   getTools,
   getAllCases, // 右側用
 } from "@/lib/kuroco";
 
+import HeroCases from "@/components/ui/hero-cases";
+import HeroCasesCarousel from "@/components/ui/hero-cases-carousel";
+import ToolsPanel from "@/components/ui/tools-panel";
+import CasesPanel from "@/components/ui/cases-panel";
+
 export default async function Page() {
-  const [cases5, tools, allCases] = await Promise.all([
-    getLatestCases(),
+  const [latestCases, tools, allCases] = await Promise.all([
+    getLatestCases(5),
     getTools(),
     getAllCases(),
   ]);
@@ -51,7 +52,9 @@ export default async function Page() {
   // }
   return (
     <>
-      <HeroCases cases={cases5} />
+      <section className="py-6">
+        <HeroCasesCarousel cases={latestCases} />
+      </section>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
         <section>
