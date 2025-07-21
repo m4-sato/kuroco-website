@@ -1,17 +1,22 @@
-import { Badge } from "@/components/ui/badge";
+// src/components/ui/cases-panel.tsx
+import Badge from "./badge";
+import type { Case } from "@/types";
 
-export default function ToolsPanel({ tools }: { tools: any[] }) {
+export default function CasesPanel({ cases }: { cases: Case[] }) {
   return (
-    <aside className="bg-gray-100 p-4 rounded space-y-3">
-      {tools.map((t) => (
-        <div key={t.id} className="flex items-center gap-3">
-          <img src={t.icon.url} className="w-9 h-9" />
-          <span>{t.name}</span>
-          <Badge variant={t.status === "OK" ? "success" : "secondary"}>
-            {t.status}
-          </Badge>
-        </div>
+    <ul className="space-y-3">
+      {cases.map((c) => (
+        <li
+          key={c.topics_id}
+          className="flex items-center justify-between p-3 rounded-lg bg-gray-100"
+        >
+          <span>{c.subject}</span>
+          {c.slug === "document_extract" && (
+            <Badge label="人気" variant="hot" />
+          )}
+          {c.slug === "image_search" && <Badge label="レア" variant="rare" />}
+        </li>
       ))}
-    </aside>
+    </ul>
   );
 }
