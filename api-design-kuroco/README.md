@@ -22,3 +22,7 @@ $ docker compose -f docker-compose.dev.yml exec web \
 ```bash
 $ docker compose -f docker-compose.dev.yml restart web
 ```
+
+### Tailwindcss ドキュメント
+
+[Next.js 版](https://tailwindcss.com/docs/installation/framework-guides/nextjs)

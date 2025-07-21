@@ -17,11 +17,15 @@
 // }
 
 // src/components/ui/tools-panel.tsx
+"use client";
+import Image from "next/image";
 import Badge from "./badge";
 import type { Tool } from "@/types";
 
-export default function ToolsPanel({ tools }: { tools: Tool[] }) {
-  if (!tools.length) return null;
+export default function ToolsPanel({ tools = [] }: { tools: Tool[] }) {
+  if (!tools.length)
+    return <p className="text-sm text-gray-400">ツールは未登録です</p>;
+
   return (
     <ul className="space-y-3">
       {tools.map((t) => (
@@ -29,7 +33,20 @@ export default function ToolsPanel({ tools }: { tools: Tool[] }) {
           key={t.topics_id}
           className="flex items-center justify-between p-3 rounded-lg bg-gray-100"
         >
-          <span>{t.subject}</span>
+          <div className="flex items-center gap-3">
+            {t.ext_1?.url ? (
+              <Image
+                src={t.ext_1.url}
+                alt={t.ext_1.desc ?? t.subject}
+                width={32}
+                height={32}
+                className="rounded"
+              />
+            ) : (
+              <span className="w-8 h-8 bg-gray-300 rounded" />
+            )}
+            <span>{t.subject}</span>
+          </div>
           {/* slug でステータスを判定 */}
           {t.slug === "chatgpt" && <Badge label="準備中" variant="wip" />}
           {t.slug === "claude" && <Badge label="OK" variant="hot" />}
