@@ -116,3 +116,7 @@
 ####
 
 ### API
+
+#### 情報源
+
+[kuroco 管理サイト](https://20250627-kuroco-test.g.kuroco-mng.app/management/menu/menu/)
