@@ -1,12 +1,19 @@
-import { Case } from "@/types";
+import { forwardRef } from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { Case } from "@/types";
 
-export function CaseCard({ data }: { data: Case }) {
+interface Props {
+  data: Case;
+}
+
+// forwardRef にすると shadcn のスタイル拡張が簡単
+export const CaseCard = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
   const unavailable = data.status === "準備中";
 
   return (
     <article
+      ref={ref}
       className={`flex gap-4 rounded-md border p-4 shadow-sm ${
         unavailable && "opacity-70"
       }`}
@@ -32,4 +39,5 @@ export function CaseCard({ data }: { data: Case }) {
       </div>
     </article>
   );
-}
+});
+CaseCard.displayName = "CaseCard";

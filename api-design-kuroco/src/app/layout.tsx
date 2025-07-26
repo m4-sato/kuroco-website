@@ -1,21 +1,19 @@
-// src/app/layout.tsx
 import "@/app/globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { ReactNode } from "react";
+import { Inter } from "next/font/google";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "AI活用ポータル",
+  description: "AI を活用してビジネスを変革させる",
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ja">
-      <body className="font-sans bg-slate-50 text-black flex flex-col min-h-screen">
-        <Header />
-        <main className="w-full max-w-screen-lg mx-auto px-4 md:px-6 lg:px-8 py-8 flex-1">
-          {children}
-        </main>
-        <Footer />
+    <html lang="ja" suppressHydrationWarning>
+      <body className={`${inter.className} bg-slate-50 text-gray-900`}>
+        {children}
       </body>
     </html>
   );

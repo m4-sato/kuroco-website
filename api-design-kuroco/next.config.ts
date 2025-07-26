@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**.kuroco-img.app", // ★ 追加
+        hostname: "20250627-kuroco-test.g.kuroco.app",
       },
     ],
   },

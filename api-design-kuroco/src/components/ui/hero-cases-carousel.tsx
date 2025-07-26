@@ -1,45 +1,33 @@
 "use client";
 
 import { Case } from "@/types";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
 import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay"; // ★ Embla の公式プラグイン
-import { useRef } from "react";
 
-type Props = { cases: Case[] };
-
-export default function HeroCasesCarousel({ cases }: Props) {
-  const autoplay = useRef(Autoplay({ delay: 3500, stopOnInteraction: false }));
-
-  if (!cases.length) return null;
+export default function HeroCasesCarousel({ cases }: { cases: Case[] }) {
+  const [sliderRef] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    slides: { perView: 1 },
+  });
 
   return (
-    <Carousel
-      plugins={[autoplay.current]}
-      className="w-full max-w-3xl mx-auto"
-      opts={{ loop: true }}
-    >
-      <CarouselContent>
-        {cases.map((c) => (
-          <CarouselItem key={c.topics_id} className="basis-1/2 md:basis-1/3">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
-              <Image
-                src={c.ext_1.url}
-                alt={c.subject}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 50vw, 33vw"
-                priority
-              />
-            </div>
-            <p className="mt-2 text-sm font-medium truncate">{c.subject}</p>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
+    <div ref={sliderRef} className="keen-slider rounded-lg overflow-hidden">
+      {cases.map((c) => (
+        <div key={c.topics_id} className="keen-slider__slide relative h-64">
+          <Image
+            src={c.thumbnail_img?.public_path ?? "/file.svg"}
+            alt={c.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/50 flex items-end p-4">
+            <h3 className="text-white text-lg font-semibold">{c.title}</h3>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }

@@ -1,33 +1,17 @@
 // src/types.ts
-export type Case = {
-  topics_id: number;
-  subject: string;
-  slug: string; // ステータス判定に使う
-};
-
-export type Tool = {
-  topics_id: number;
-  subject: string;
-  slug: string; // ステータス判定に使う
-};
-
-export interface ImageExt {
-  url: string;
-  desc?: string;
-}
-
-export interface Tool {
-  topics_id: number;
-  subject: string;
-  ext_1?: {
-    url: string;
-    desc?: string;
-  }; // ★ 追加
-}
-
+/** ヘッドレス CMS の事例カード構造 */
 export interface Case {
   topics_id: number;
-  subject: string;
-  ext_1?: ImageExt; // ★ 追加
-  // …他のフィールド
+  title: string;
+  lead: string;
+  category_nm: "Data" | "AI";
+  thumbnail_img?: { public_path: string };
+  tool?: string; // ChatGPT / Tableau など
+  status?: "利用可能" | "準備中";
+  published_at?: string;
+}
+
+/** list 付きレスポンス共通ラッパー */
+export interface ListResponse<T> {
+  list: T[];
 }

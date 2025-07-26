@@ -21,3 +21,5 @@ $ docker compose -f docker-compose.dev.yml restart web
 [Next.js 版](https://tailwindcss.com/docs/installation/framework-guides/nextjs)
 
 [shadcn ui](https://ui.shadcn.com/docs/components/carousel)
+
+[sample code](https://github.com/fsubal/gihyo_tailwindcss_book)
