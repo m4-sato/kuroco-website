@@ -1,14 +1,16 @@
-// src/components/Header.tsx
-export default function Header({ title, sub }: { title: string; sub: string }) {
+export default function Header({
+  title = "AI活用ポータル",
+  sub = "AIを活用してビジネスを変革させる",
+}: {
+  title?: string;
+  sub?: string;
+}) {
   return (
-    <header className="shadow">
-      {/* ①タイトル行：黄色 */}
-      <div className="bg-yellow-100 px-6 py-3">
-        <h1 className="text-xl font-bold">{title}</h1>
+    <header className="w-full bg-white border-b border-slate-200">
+      <div className="max-w-screen-lg mx-auto px-4 md:px-6 lg:px-8 py-4">
+        <h1 className="text-2xl font-extrabold">{title}</h1>
+        {!!sub && <p className="mt-1 text-sm text-slate-600">{sub}</p>}
       </div>
-
-      {/* ②サブタイトル行：ピンク */}
-      <div className="bg-rose-100 px-6 py-2 text-sm">{sub}</div>
     </header>
   );
 }

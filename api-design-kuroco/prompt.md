@@ -364,3 +364,74 @@ ul[class] {
 # 目標
 
 ヘッドレス CMS(kuroco)と連携してコンテンツを適切に画面に表示できるようにする。
+
+# 指示
+
+1. 優秀な Next.js フロントエンジニア
+2. 優秀なヘッドレス CMS（Kuroco）エンジニア
+
+# 指示
+
+添付画像の通り社内のデータ活用・AI 活用事例のサイトを構築したいです。
+step-by-step で教えてください。
+
+# 条件
+
+## 使用する技術
+
+- フロントエンド
+  - React,Next.js
+  - Tailwindcss(shadncn)
+- バックエンド
+  Kuroco(ヘッドレス CMS)
+
+## 画面レイアウトイメージ
+
+添付画像を参照
+
+### ヘッダー
+
+①②
+
+### NewContents
+
+- ③ Carousel：事例が 3 件表示される
+- ⑦ 検索窓：キーワード検索
+
+### twocolumn
+
+- 左の列：データ活用事例
+- 右の列：AI 活用事例
+
+### フッター
+
+⑥ copy right
+
+## ヘッドレス CMS
+
+kuroco 参照情報：
+
+- [kuroco 管理サイト](https://20250627-kuroco-test.g.kuroco-mng.app/management/menu/menu/)
+- [kuroco 管理画面マニュアル](https://kuroco.app/ja/docs/management/dashboard/)
+
+## 設計
+
+静的と動的で分けたいです。
+
+### Jamstack
+
+- SSG:①,②,⑥
+- SSR:③
+
+### API 設計
+
+- 事例取得用 API
+  - ヘッドレス CMS に投稿される内容を取得する API
+  - エンドポイント:/rcms-api/4/cases-cards/{topics_id}
+- 検索用 API
+  - 事例集からキーワード検索する。
+  - エンドポイント:/rcms-api/4/search
+
+# 目標
+
+ヘッドレス CMS ベースのサイトを構築する。
