@@ -190,6 +190,51 @@ https://kuroco.app/ja/docs/tutorials/implement-a-search-function/
 | ------ | -------------- | ------------------------------------------------ |
 | Api    | request_api    | カスタム処理で作成した API の実行 (GET メソッド) |
 
+#### 2-1-4. エンドポイント詳細設定(※コンテンツに限定)
+
+- 基本設定
+
+  - `topics_group_id`:表示するコンテンツ定義 ID
+  - `contents_type`：表示するカテゴリ ID、設定がない場合はすべてのカテゴリが対象。
+  - `filter`：フィルタークエリ
+  - `filter_lang`
+  - `filter_request_allow_list`
+    filter リクエストに指定可能な項目のリスト (デフォルト: 対象項目なし / 全項目を許可したい場合は :ALL を設定してください)
+  - `ext_group`:グループ化された拡張項目をまとめる
+
+- 詳細設定
+  - `category_parent_id`：親カテゴリで絞り込む
+  - `exclude_category_parent_id`：表示しないカテゴリ ID
+  - `ext_column`：拡張項目の値で一覧を絞り込む 例 指定した値で絞り込む場合）ext_column=ext_col_02:15 例 指定した値以外で絞り込む場合) ext_column=ext_col_02!:15
+  - `target_col_for_keyword`：キーワード検索の対象カラムを指定します。 設定がない場合はタイトル、本文、カテゴリ、拡張項目が対象になります。 補足) subject,contents,contents_type または拡張項目 no(ext_col_01,ext_col_10 など)を設定してください。
+  - `use_target_col_for_keyword_from_request`：リクエストでキーワード検索の対象項目の絞り込むを利用する
+  - `topics_keyword_cond`：キーワード検索のキーワード毎の絞り込み方を変える（デフォルト：AND)
+  - `full_text_search_cond`：全文検索のキーワード毎の絞り込み方を変える（デフォルト：AND)
+  - `tag_category_id`：表示対象になるタグカテゴリ ID、設定がない場合はすべてのカテゴリが対象になります。
+  - `exclude_tag_category_id`：表示対象から除外するタグカテゴリ ID です。
+  - `tag_id`：表示対象になるタグ ID です。
+  - `exclude_tag_id`：表示対象から除外するタグ ID です。
+  - `tag_cond`：タグの絞り込み方を変える（デフォルト：OR)
+  - `exclude_topics_id`：除外するコンテンツ ID
+  - `get_comment_cnt`：コメント数を取得する
+  - `get_unlisted_data`：一覧に載せないデータも取得する
+  - `comment_cond_date`：コメント数を取得する際の日付条件を設定する（例：7 日前の場合「-7 day」）
+  - `get_favorite_cnt`：お気に入り数を取得する
+  - `my_favorite_list`：自分のお気に入りでコンテンツ絞り込む
+  - `my_comment_list`
+  - `my_own_list`
+  - `add_owner_info_cols`:メンバー情報で追加するカラム
+  - `required_param`：必須にしたいクエリパラメータを設定したい場合に使用します
+  - `add_my_favorite_flg`：favorite_id が存在する場合、現在のメンバーの topicsList に my_favorite フラグを設定します
+  - `favorite_action_type`：絞り込みたいお気に入りのアクションを指定します
+  - `exclude_favorited_topics`：お気に入り済みのデータを対象外とします
+  - `get_tag_flg`：タグ情報をセットする（はい：1、なし：0）
+  - `get_tag_order_by_tag_category`：タグのカテゴリーでタグを並べる
+  - `ignore_open_flg`：非公開コンテンツを表示する
+  - `ignore_category_open_flg`
+  - `ignore_tag_open_flg`
+  - `add_open_ymdhi`:公開開始・終了日時を取得する
+
 #### 2-2. API 　エンドポイントの点検（SwaggerUI）
 
 コンテンツ定義で作成した` グループID``9 `を把握
