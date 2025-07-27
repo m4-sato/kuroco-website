@@ -135,7 +135,7 @@ https://kuroco.app/ja/docs/tutorials/implement-a-search-function/
 
 ### 2. API
 
-#### 2-1. API のエンドポイント作成
+#### 2-1-1. API のエンドポイント一覧表の作成
 
 左ブレード[API]より、対象のエンドポイント一覧をクリック。
 
@@ -146,6 +146,49 @@ https://kuroco.app/ja/docs/tutorials/implement-a-search-function/
 - 説明：API に関する説明を記入(必須)
 - 並び順:API の並び順を入力します。降順に並びます。
 - セキュリティ：API のセキュリティを選択。
+
+#### 2-1-2. エンドポイントの作成
+
+- パス：先頭の /rcms_api/xxx/ の部分は変更不可です。/rcms_api/{api_id}/の形式で固定値が設定されます。基本的にはモデル+動作など、使用方法に応じたパスを命名してください。例: login, content/news, member/insert
+
+- モデル 各カテゴリ/モデル/オペレーションの詳細な説明は、エンドポイントで設定可能なカテゴリー一覧に記載します。
+  モデル名の横に表示しているプルダウンの「v1」等の値は、各 API モデルのバージョン名を示します。
+- サマリー API の概要を記載してください。記載した内容はエンドポイント一覧/Swagger UI に表示されます。
+- 説明 必要に応じて API の使用方法など、詳細な説明を記載してください。
+  ここでは CommonMark の記法を利用することができます。
+  記述した内容は、Swagger UI 画面の各エンドポイントにも表示されます。
+- API リクエスト制限 下記 3 種類より選択できます。
+  `None`
+  `GroupAuth`
+  `MemberCustomSearchAuth`
+  `GroupAuth`もしくは`MemberCustomSearchAuth`を選択すると、API の使用時にログインユーザーの権限をチェックし、合致した場合にのみリクエストを許可します。
+- キャッシュ API レスポンスをキャッシュする期間を秒単位で設定します。
+  Kuroco では従量課金で費用がかかるため、メディアサイトなど多量のリクエストが見込まれる用途でご利用される場合は、設定することを推奨します。
+  キャッシュ期間は 1 日・1 週間等をお勧めしております。
+  コンテンツ・メンバー等、取得対象のデータに更新があった場合、キャッシュは自動的にクリアされます。
+- 流量制限 最大 3600 秒内で許可するリクエスト数をセットできます。制限を超えた場合は 429 Too Many Requests をレスポンスします。
+  流量制限の状況はレスポンスヘッダーで確認可能です。
+  - 制限数：x-rcms-ratelimit-limit:xxx
+  - 残りのリクエスト可能数：x-rcms-ratelimit-remaining:yyy
+  - リセットされるまでの残り時間：x-rcms-ratelimit-reset: zzz
+
+#### 2-1-3. エンドポイントで設定可能なカテゴリー一覧(※コンテンツに限定)
+
+##### コンテンツ
+
+| モデル         | オペレーション | 説明                       |
+| -------------- | -------------- | -------------------------- |
+| Topics         | list           | コンテンツ一覧の取得       |
+|                | details        | コンテンツ詳細の取得       |
+| TopicsCategory | list           | コンテンツ定義の一覧取得   |
+| TopicsGroup    | list           | コンテンツ定義の詳細を取得 |
+|                | details        | コンテンツ定義の詳細を取得 |
+
+##### API
+
+| モデル | オペレーション | 説明                                             |
+| ------ | -------------- | ------------------------------------------------ |
+| Api    | request_api    | カスタム処理で作成した API の実行 (GET メソッド) |
 
 #### 2-2. API 　エンドポイントの点検（SwaggerUI）
 
@@ -191,6 +234,8 @@ https://kuroco.app/ja/docs/tutorials/restricting-api-access-with-statictoken/
 
 対象のエンドポイントの「後処理」を選択
 
+※OpenAPI に反映されない処理のためエンドポイント設定に含めるべき
+
 ### 3. オペレーション
 
 #### 3-1.承認ワークフロー設定
@@ -208,4 +253,4 @@ https://kuroco.app/ja/docs/tutorials/how-to-use-workflow/
 
 - [kuroco 管理サイト](https://20250627-kuroco-test.g.kuroco-mng.app/management/menu/menu/)
 - [kuroco 管理画面マニュアル](https://kuroco.app/ja/docs/management/dashboard/)
-- []
+- [kuroco 企業メディアサンプルコード](https://github.com/diverta/front_next_media)
