@@ -16,15 +16,15 @@ export default function HeroCasesCarousel({ cases }: { cases: Case[] }) {
       {cases.map((c) => (
         <div key={c.topics_id} className="keen-slider__slide relative h-64">
           <Image
-            src={c.thumbnail_img?.public_path ?? "/file.svg"}
-            alt={c.title}
+            src={c.thumbnail?.url ?? "/file.svg"}
+            alt={c.subject}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"
             priority
           />
           <div className="absolute inset-0 bg-black/50 flex items-end p-4">
-            <h3 className="text-white text-lg font-semibold">{c.title}</h3>
+            <h3 className="text-white text-lg font-semibold">{c.subject}</h3>
           </div>
         </div>
       ))}

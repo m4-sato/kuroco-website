@@ -1,43 +1,36 @@
-import { forwardRef } from "react";
+// src/components/ui/case-card.tsx
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import { Case } from "@/types";
+import { Badge } from "@/components/ui/badge";
 
-interface Props {
-  data: Case;
-}
-
-// forwardRef にすると shadcn のスタイル拡張が簡単
-export const CaseCard = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
-  const unavailable = data.status === "準備中";
+export default function CaseCard({ data }: { data: Case }) {
+  const unavailable = data.tool_status?.[0]?.key === "preparing";
+  const imgSrc = data.thumbnail?.url ?? "/file.svg";
 
   return (
     <article
-      ref={ref}
-      className={`flex gap-4 rounded-md border p-4 shadow-sm ${
-        unavailable && "opacity-70"
-      }`}
+      className={
+        "flex gap-3 bg-panelBg rounded-lg p-3 hover:bg-[#dcdcdc] hover:shadow-md transition cursor-pointer"
+      }
     >
       <Image
-        src={data.thumbnail_img?.public_path ?? "/file.svg"}
-        alt={data.title}
+        src={imgSrc}
+        alt={data.subject}
         width={96}
         height={96}
-        className="rounded object-cover shrink-0"
+        className="rounded-panel w-16 h-16 object-cover"
       />
-
       <div className="flex-1">
-        <h3 className="font-medium">{data.title}</h3>
-        <p className="text-sm line-clamp-2 mb-2">{data.lead}</p>
-
-        <div className="flex gap-2 text-xs">
-          <Badge variant={unavailable ? "secondary" : "default"}>
+        <h3 className="font-medium">{data.subject}</h3>
+        <div className="mt-2 text-xs">
+          <Badge
+            className="bg-accent/20 text-accent border border-accent/30"
+            role="status"
+          >
             {unavailable ? "準備中" : "利用可"}
           </Badge>
-          {data.tool && <Badge variant="outline">{data.tool}</Badge>}
         </div>
       </div>
     </article>
   );
-});
-CaseCard.displayName = "CaseCard";
+}

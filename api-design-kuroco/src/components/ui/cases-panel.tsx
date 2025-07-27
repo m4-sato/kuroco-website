@@ -1,5 +1,5 @@
 import { Case } from "@/types";
-import { CaseCard } from "./case-card";
+import CaseCard from "@/components/ui/case-card";
 
 export default function CasesPanel({
   heading,
@@ -9,9 +9,9 @@ export default function CasesPanel({
   cases: Case[];
 }) {
   return (
-    <section>
-      {heading && <h2 className="text-lg font-semibold mb-4">{heading}</h2>}
-      <div className="flex flex-col gap-4">
+    <section className="space-y-4">
+      {heading && <h2 className="text-sm font-semibold mb-3">{heading}</h2>}
+      <div className="space-y-3">
         {cases.map((c) => (
           <CaseCard key={c.topics_id} data={c} />
         ))}

@@ -2,12 +2,12 @@
 /** ヘッドレス CMS の事例カード構造 */
 export interface Case {
   topics_id: number;
-  title: string;
-  lead: string;
-  category_nm: "Data" | "AI";
-  thumbnail_img?: { public_path: string };
-  tool?: string; // ChatGPT / Tableau など
-  status?: "利用可能" | "準備中";
+  subject: string;
+  contents: string;
+  thumbnail?: { url: string };
+  "category-data-ai"?: { key: "data" | "ai"; label: string };
+  // ↓ ツールステータス (ready / preparing)
+  tool_status?: { key: "ready" | "preparing"; label: string }[];
   published_at?: string;
 }
 

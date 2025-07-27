@@ -1,7 +1,7 @@
-export default function Footer({ copy = "© 2025 All rights reserved." }) {
+export default function Footer() {
   return (
-    <footer className="w-full bg-slate-100 text-center py-4 text-xs text-slate-500">
-      {copy}
+    <footer className="py-6">
+      <p className="text-center text-[10px] text-gray-400">⑥Copy right</p>
     </footer>
   );
 }
